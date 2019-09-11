@@ -1,0 +1,2 @@
+# configFile
+aplhashop-config-file
