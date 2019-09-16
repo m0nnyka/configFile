@@ -1,0 +1,20 @@
+eureka:
+  instance:
+    hostname: localhost
+    preferIpAddress: true
+  server:
+    #Abilita o disabilita l'auto preservazione
+    enableSelfPreservation: false
+    #Durata (in ms) della cache
+    responseCacheUpdateIntervalMs: 30000
+    #Tempo di attesa in ms di deregistrazione del servizio (def 60000)
+    evictionIntervalTimerInMs: 30000
+    #Tempo di attesa (in secondi) prima di accettare richieste
+    waitTimeInMsWhenSyncEmpty: 5
+  client:
+    #Un Servizio Eureka è escluso dalla registrazione in Eureka
+    registerWithEureka: false
+    #Non esegue la cache in locale 
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: ${EUREKA_URL:http://AdmUser:MagicaBula_2018@localhost:8761/eureka/}

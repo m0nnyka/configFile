@@ -1,0 +1,42 @@
+#http://localhost:8765/api/getprice/prezzi/002001801
+zuul:
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 60000
+  prefix: /api
+  ignoredServices: '*'
+  routes:
+    price: 
+      path: /getprice/**
+      serviceId: PRICEART-SERVER
+      stripPrefix: true
+      sensitive-headers: Cookie,Set-Cookie
+      
+hystrix:
+  command:
+    PRICEART-SERVER:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+            
+ 
+            
+            
+PRICEART-SERVER:
+  ribbon:
+    NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
+    listOfServers: http://localhost:5071,http://localhost:5072
+    ConnectTimeout: 2000
+    ReadTimeout: 5000
+    MaxTotalHttpConnections: 500
+    MaxConnectionsPerHost: 100
+    eureka:
+         enabled: false
+
+      
+      
+
+
+ 
+
